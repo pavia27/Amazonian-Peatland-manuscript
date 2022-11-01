@@ -9,7 +9,7 @@ merge_gene_counts<-{
     colnames(d)<- c("KO",substr(c,1,17))      a<-full_join(a,d, by = "KO")
     }
     a[is.na(a)] <- 0
-    write.csv(a,"Whole_PMFB_Functional_Potential.csv")
+    write.csv(a,"PMFB_Functional_Potential.csv")
   }
 pco_stats<-{
   rm(list = ls(all.names = TRUE))
@@ -17,7 +17,7 @@ pco_stats<-{
   library(scatterplot3d)
   library(car)
   library(vegan)
-  a<-read.csv("Whole_PMFB_Functional_Potential.csv")
+  a<-read.csv("PMFB_Functional_Potential.csv")
   rownames(a)<-a[,2]
   a<-a[,-c(1:2)]
   sitegene <- as.factor(c("SJ","SJ","SJ","SJ","BV","BV","BV","BV","QUI","QUI","QUI","QUI","SJ","SJ","BV","BV","BV","BV","QUI","QUI","QUI","QUI","SJ","SJ"))
@@ -35,7 +35,7 @@ hclust<-{
   library(ggplot2)
   library(ggdendro)
   library(dendextend)
-  a<-read.csv("Whole_PMFB_Functional_Potential.csv")
+  a<-read.csv("PMFB_Functional_Potential.csv")
   rownames(a)<-a[,2]
   a<-a[,-c(1:2)]
   b<- as.data.frame(t(as.matrix(a)))
@@ -63,7 +63,7 @@ DESEQ<-{
     library(reshape2)
     library(vegan)
     setwd("")
-    a<-read.csv("Whole_PMFB_Functional_Potential.csv")
+    a<-read.csv("PMFB_Functional_Potential.csv")
     rownames(a)<-a[,2]
     a<-a[,-c(1:2)]
     col.order = data.frame(row.names = c("X0116_SJ02_MP02_10","X0116_SJ02_MP02_20","X0116_SJ02_MP15_10","X0116_SJ02_MP15_20","X0216_BV02_MP05_10","X0216_BV02_MP05_20","X0216_BV02_MP12_10","X0216_BV02_MP12_20","X0216_QUI2_MP05_10","X0216_QUI2_MP05_20","X0216_QUI2_MP10_10","X0216_QUI2_MP10_20","X0715_SJ02_MP02_20","X0715_SJ02_MP15_20","X0815_BVA2_MP04_20","X0815_BVA2_MP10_20","X1015_BV01_MP06_20","X1015_BV01_MP10_20","X1015_QUI2_SP05_10","X1015_QUI2_SP05_20","X1015_QUI2_SP10_10","X1015_QUI2_SP10_20","X1015_SJ02_MP02_20","X1015_SJ02_MP15_20"),treatment = c("SJO","SJO","SJO","SJO","BVA","BVA","BVA","BVA","QUI","QUI","QUI","QUI","SJO","SJO","BVA","BVA","BVA","BVA","QUI","QUI","QUI","QUI","SJO","SJO"))
